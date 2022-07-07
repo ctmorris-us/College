@@ -1,0 +1,185 @@
+/* Q1 */
+
+void t1( int n) {
+   int i;
+   int j;
+   char symbol = '*';
+   for ( i = 1; i <= n; i++ ) {
+      char symbolChain[i];
+
+      for ( j = 0; j != i; j++ ) { 
+         symbolChain[j] = symbol;
+      }
+
+      printf("%s\n", symbolChain);
+      
+   }
+}
+
+/* Q2 */
+
+void t2( int n) {
+   int i;
+   int j;
+   char symbol = '*';
+   for ( i = n; i >= 1; i-- ) {
+      for ( j = 0; j != i; j++ ) {
+         printf("%c", symbol);
+      }
+
+      printf("\n");
+
+   }
+}
+
+
+/* Q3 */
+
+void t3( int n) {
+   int i;
+   int j;
+   int m;
+   char symbol = '*';
+
+   for ( i = 1; i <= n; i++ ) {
+     for ( m = 1; m <= (n - i); m++) {
+         printf(" ");
+      }
+
+     for ( j = 0; j != i; j++ ) {
+         printf("%c", symbol);
+      }
+
+      printf("\n");
+
+   }
+}
+
+/* Q4 */
+
+void t4( int n) {
+   int i;
+   int j;
+   int m;
+   char symbol = '*';
+
+   for ( i = n; i >= 1; i-- ) {
+     for ( m = 1; m <= (n - i); m++) {
+         printf(" ");
+      }
+
+     for ( j = 0; j != i; j++ ) {
+         printf("%c", symbol);
+      }
+
+      printf("\n");
+
+   }
+}
+
+/* Q5 */
+
+Void add3( int a[], int n) {
+
+   int i;
+   int temp;
+
+   for (i=0; i <= (n-1); i++) {
+      temp = a[i];
+      a[i] = temp + 3;
+   }
+}
+
+/* Q6 */
+
+// Preconditions:
+//    s is a string array
+// Postconditions:
+//    return value is number of characters before '\0' character
+
+
+
+int myStrlen( char s[] ) {
+
+   char *a;
+   int i = 0;
+
+   a = &s[0];
+
+   while (1) {
+      if (*a != '\0') {
+         i++;
+         a++;
+      } else {
+         break;
+
+      }
+   }
+
+   return i;
+}
+
+
+/* Q7 */
+
+// Preconditions:
+//    s is a string array
+//    t is empty string array
+//    t has enough allocated memory to fit the memory size of s
+// Postconditions:
+//    t is a string array equal to s
+
+
+void myStrcpy( char t[], char s[] ) {
+
+   char *pnrs, *pnrt;
+
+   pnrs = &s[0];
+   pnrt = &t[0];
+
+   while (1) {
+
+      if ( *pnrs == '\0' ) {
+         *pnrt = *pnrs;
+         break;
+
+      } else {
+         *pnrt = *pnrs;
+         pnrs++;
+         pnrt++;
+      }
+   }
+
+}
+
+/* Q8 */
+
+//Preconditions
+//    a is an array of characters
+//    n is the numbers of elements in that array
+//Postconditions
+//    a will contain no lowercase characters
+
+
+void myToUpper( char a[], int n ) {
+
+   char *pnta;
+   int diff = 'a' - 'A';
+   int i;
+
+   pnta = &a[0];
+
+   for (i = 0; i <= n; i++) {
+      if ( ('a' <= *pnta) && ('z' >= *pnta) ) {
+         printf( "%c\n", *pnta);
+         *pnta -= diff;
+         printf( "%c\n", *pnta);
+         pnta++;
+
+      }
+   }
+}
+
+
+
+

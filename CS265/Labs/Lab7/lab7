@@ -1,0 +1,101 @@
+Q1:
+
+List: 
+	1) A sequence of elements (from notes)
+	2) In order to access an element, one must traverse through the list in sequential order from the beginning element of the list until the desired element is reached.
+
+Stack:
+	1) A Collection of elements
+	2) Elements are added onto one end of the stack.
+	3) Elements are accessed from the same end of the stack.
+	4) Therefore, elements added to the stack are accessed before the elements they were placed in front of.
+
+Queue:
+	1) A Collection of elements.
+	2) Elements are added to one end of the queue.
+	3) Elements are accessed through the other end.
+	4) Therefore, elements added to the queue are accessed after the elements placed in front of them.
+
+Dictionary:
+	1) A collection of pairs of (key, value) pairs (from notes)
+	2) Each key is unique, and values are accessed through their respective keys.
+
+Q2:
+	Given that binary search halves the search array after each iteration, the size of the search array decreases with k iterations as (n/2)^k. Therefore, the binary search will compare at most ceil(log2(n)) elements. In big O notation, the worst case run time of a binary search is O(log(n)).
+
+Q3: 
+	Given that linear search iterates through each element in the list, then the worst case run time is n iterations, i.e. the linear search iterated through every element in the list. So, the linear search will compare at most n elements.
+
+Q4: When the array is unsorted, large, and will only need to be searched once (i.e. the array is searched through once for one value, and is then disposed of). The time required to sort the large array and search using binary search will probably take longer than linear search. And since the array is only used once, there is no benefit to sorting the array because it will not be used again.
+
+Q5:
+*84* 37 93 82 98 27 63 73 93 27 75 55 45 8
+*84* 37 8 82 98 27 63 73 93 27 75 55 45 93
+*84* 37 8 82 45 27 63 73 93 27 75 55 98 93
+*84* 37 8 82 45 27 63 73 55 27 75 93 98 93
+*37* 8 82 45 27 63 73 55 27 75 |84| *93* 98 93
+*37* 8 27 45 27 63 73 55 82 75 |84| *93* 93 98
+*37* 8 27 27 45 63 73 55 82 75 |84| 93 93 98
+*8* 27 27 |37| *45* 63 73 55 82 75 |84| 93 93 98
+8 27 27 |37| |45| *63* 73 55 82 75 |84| 93 93 98
+8 27 27 |37| |45| *63* 55 73 82 75 |84| 93 93 98
+8 27 27 |37| |45| 55 |63| *73* 82 75 |84| 93 93 98
+8 27 27 |37| |45| 55 |63| *73* 75 82 |84| 93 93 98
+8 27 27 37 45 55 63 73 75 82 84 93 93 98
+
+Q6:
+
+[ "3", "24", "06" ]
+
+A linked list is built where the head node has contains the char "3"
+The next node contains he char "24"
+The final node contains the char "06"
+
+Q07:
+[13, [28, [24, [3, None]]]]
+
+Q08:
+
+For the first output, the pointer is pointing to buffer (found as char *s = buffer), this means that when strcat is called on s, the value of *s is concatenated with the modifying string. However, since the value of s is pointing to the value of buffer, that means that buffer is being concatenated.
+
+For the second output, the string value of buffer is copied over to the value of pointer s (found as strcpy( s, buffer ). This means that the values stored in s are a string equivalent to the string stored in buffer, but s is not pointing to buffer. Therefore, by using strcat on s, the value of buffer is not being modified since s is not pointing to buffer.
+
+Q09:
+Hash: Values
+	1:Null
+	2:Null
+	3:38 -> 86 -> Null
+	4:99 -> 11 -> 28 -> 24 -> Null
+	5:78 -> Null
+	6:Null
+	7:Null
+
+Where -> denotes the next element in the list is the element to the right of -> where the left most element is the first element.
+
+Q10:
+
+int find (char *key, int *p_ans)
+{  
+   int h = hash( key );
+   entry *p;
+   p = table[ h ];
+   
+   while (1) {
+      if (p->key == key)
+      {  
+         p->val = *p_ans;
+         return 1;
+      }
+      else if (p->next == NULL)
+      {  
+         return 0;
+      }
+      else
+      {  
+         p = p->next;
+      }
+   }
+}
+
+
+

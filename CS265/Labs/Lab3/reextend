@@ -1,0 +1,64 @@
+#!/bin/bash
+
+for file_name in $( ls )
+do
+	if [[ "$1" != '.'* ]]
+	then
+		echo "Invalid: First Input is not a file extension"
+		break
+	elif [[ "$1" == *[[:upper:]]* ]]
+	then
+		echo "Invalid: First Input has an uppercase character in it"
+		break
+	elif [[ "$1" == *[[:digit:]]* ]]
+	then
+		echo "Invalid: First Input has a digit in it"
+		break
+	elif [[ "$1" == '.'*[^a-z]* ]]
+	then
+		echo "Invalid: First Input has a special character in it"
+		break
+
+	fi
+	
+	if [[ "$2" != '.'* ]]
+	then
+		echo "Invalid: Second Input is not a file extension"
+		break	
+	elif [[ "$2" == *[[:upper:]]* ]]
+	then
+		echo "Invalid: Second Input has an uppercase character in it"
+		break
+	elif [[ "$2" == *[[:digit:]]* ]]
+	then
+		echo "Invalid: Second Input has a digit in it"
+		break
+	elif [[ "$2" == '.'*[^a-z]* ]]
+	then
+		echo "Invalid: Second Input has a special character in it"
+		break
+
+	fi
+	
+
+	if [[ $file_name == *$1 ]]
+	then
+		new_file_name=${file_name%$1}$2
+		mv $file_name $new_file_name
+	fi
+	
+done
+
+
+
+
+
+
+
+
+
+
+
+
+
+

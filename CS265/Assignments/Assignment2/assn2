@@ -1,0 +1,105 @@
+#!/bin/bash
+
+setdb=false
+db=""
+while true; do
+
+	echo -n '% '
+	read -r
+
+   firstcommand=$( echo ${REPLY} | cut -d " " -f 1 )
+   i=2
+   j=0
+   commands=( "${firstcommand}" )
+
+   while true; do
+      tmpcommand=$( echo ${REPLY} | cut -d " " -f $i )
+      if [[ "${tmpcommand}" == [\'\"]* ]]; then
+			temp="${tmpcommand#[\'\"]}"
+			while true; do
+				i=$(( i + 1 ))
+				newtemp=$( echo ${REPLY} | cut -d " " -f $i )
+				if [[ "${newtemp}" == *[\'\"] ]]; then
+					temp="${temp} ${newtemp%[\'\"]}"
+					break
+				else
+					temp="${temp} ${newtemp}"
+				fi
+			done
+			tmpcommand=${temp}
+#			echo "${tmpcommand}"
+		fi
+
+		if [[ "${tmpcommand}" == "${commands[$j]}" ]]; then
+         break
+      else
+         commands[$(( j + 1 ))]="${tmpcommand}"
+      fi
+
+      i=$(( i + 1 ))
+      j=$(( j + 1 ))
+   done
+
+	if [[ "quit" == "${commands[0]}" ]]; then
+		exit
+	elif [[ "setdb" == "${commands[0]}" ]]; then
+		if [[ -z "${commands[1]}" ]]; then
+			echo "Missing Argument."
+		elif [[ ! -f "${commands[1]}" ]]; then  
+			setdb=true
+			db="${commands[1]}"
+			touch ${commands[1]}
+			echo "File ${commands[1]} created. Database set to ${commands[1]}."	
+		elif [[ -f "${commands[1]}" ]] && [[ -r "${commands[1]}" ]]; then
+			db="${commands[1]}"
+			setdb=true
+			echo "Database set to ${commands[1]}"
+		elif [[ -f "${commands[1]}" ]] && [[ ! -r "${commands[1]}" ]]; then
+			echo "File ${commands[1]} is not readable."	
+		fi
+	
+		if [[ ! -z "${commands[2]}" ]]; then
+			#echo "Database set to ${commands[1]}"
+			echo "Extra arguments ignored."
+		fi
+
+	elif [[ "add" == "${commands[0]}" ]]; then
+		if [[ "${setdb}" == "false" ]]; then
+			echo "Database has not been set."
+		elif [[ -z "${commands[2]}" ]] || [[ ! -z "${commands[3]}" ]]; then
+			echo "Incorrect Syntax."	
+		elif (( $( grep -c "${commands[1]}" $db ) == 0 )); then
+			echo ${commands[1]}:${commands[2]} >> $db
+			echo "${commands[1]}:${commands[2]} has been added to the database"
+		elif (( $( grep -c "${commands[1]}" $db ) >= 1 )); then
+			searchtext="${commands[1]}:.*"
+			replacetext="${commands[1]}:${commands[2]}"
+			sed -i "s|${searchtext}|${replacetext}|" $db 
+			echo "${commands[1]} has been updated to ${commands[2]}"
+		fi
+	elif [[ "delete" == "${commands[0]}" ]]; then
+		if [[ "${setdb}" == "false" ]]; then
+			echo "Database has not been set."
+		elif [[ -z "${commands[1]}" ]] || [[ ! -z "${commands[2]}" ]]; then
+			echo "Incorrect Syntax."
+		elif (( $( grep -c "${commands[1]}" $db ) == 0 )); then
+			echo "${commands[1]} does not exist in ${db}"	
+		elif (( $( grep -c "${commands[1]}" $db ) >= 1 )); then
+			searchtext="${commands[1]}:.*"
+			sed -i "/${searchtext}/d" $db
+			echo "${commands[1]} has been deleted in ${db}"
+		fi
+	elif [[ "printdb" == "${commands[0]}" ]]; then
+		if [[ "${setdb}" == "false" ]]; then
+			echo "Database has not been set."
+		elif [[ "${setdb}" == "true" ]]; then
+			while read line; do
+				echo $line
+			done < "${db}"
+		fi
+	else
+		echo "Unrecognized command."
+	fi
+	unset commands[@]
+done
+

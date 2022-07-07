@@ -1,0 +1,62 @@
+
+1.1:
+
+egrep "the" bright_side_of_life
+
+1.2:
+
+egrep '\<the\>' bright_side_of_life
+
+1.3:
+
+egrep '\<Just\>' bright_side_of_life
+
+1.4
+
+egrep '(Just|just)' bright_side_of_life
+
+1.5
+
+egrep '^\<(Just|just)\>' bright_side_of_life
+
+1.6
+
+egrep '\<(mad|bad)\>' bright_side_of_life
+
+1.7
+
+egrep "\<(breath|death)\>[']{0}" bright_side_of_life
+
+1.8
+
+egrep '(\<you\>[,.]?)$' bright_side_of_life
+
+1.9
+
+egrep '^\s+\S+' bright_side_of_life
+
+1.10
+
+egrep '^\S{0}$' bright_side_of_life
+
+1.11
+
+Pipe output into wc -l
+
+Ex: egrep -n '^\S{0}$' bright_side_of_life | wc -l
+
+3.1
+
+24e47a30aa93cd28894d2ec6eb5871fbad2a47e6
+
+3.2
+
+Git reset will move where you are pointing but now the current information in the working tree
+
+Git reset --hard will move where you are pointing and clear out all information in the working tree
+
+3.3
+
+git checkout ketch marlin
+
+

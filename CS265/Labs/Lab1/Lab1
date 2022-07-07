@@ -1,0 +1,51 @@
+Q2: Line Two
+
+Q3: line Three
+
+Q4:
+-rw-r--r-- 1 ctm77 ctm77  8060 Jun 28 15:24 funny
+-rwxr-xr-x 1 ctm77 ctm77   240 Jun 28 15:27 hello.bash
+-rw-rw-r-- 1 ctm77 ctm77    64 Jun 28 15:10 TEST
+-rw-rw-r-- 1 ctm77 ctm77    85 Jun 28 14:16 tutor
+-rw-rw-r-- 1 ctm77 ctm77 33224 Jun 28 15:11 vi_lab
+
+Q5: 
+read and write to user
+read to group
+read to world
+
+Q6:
+read, write, and execute to user
+read and execute to group
+read and execute to world
+
+Q7: Yes
+
+Q8: Yes
+
+Q9: No
+
+Q10:
+chmod 700 hello.bash
+chmod u+x hello.bash
+
+Q11:
+Message outputted: 'readonly' option is set (add ! to override)
+
+Q12:
+a) annoy     index.html  itemList-2cols  UnitTestingPhase
+annoy.cc  itemList    TelecomTruths
+b) annoy  annoy.cc
+c) index.html  itemList  itemList-2cols  TelecomTruths
+d) annoy
+e) ls: cannot access 'annoy?': No such file or directory
+
+Q13: Created a file name "a". It required to :q to close out of the file.
+
+Q14:
+a)	Makes information easily readable
+b)	Long listing format
+c)	Sort by modification time, earliest first
+d)	Do not list implied . and ..
+e)	List the directories but not their contents.
+

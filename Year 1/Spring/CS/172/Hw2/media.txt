@@ -1,0 +1,13 @@
+Song,Blackbird,8,Hehe,The Reckoning
+Song,Horn in the Middle,9,Nujabes,Metaphorical Music
+Song,The World Is Yours,9,Nas,Illmatic
+Song,Doggy Dogg World,9.5,Snoop Dog,Doggystyle
+Movie,Inception,9,Christopher Nolan,120
+Movie,Matrix,8.5,The Wachowski Sisters,105
+Movie,Avengers: Endgame,10,Anthony Russo,180
+Movie,Oldboy,9.5,Park Chan-wook,120
+Picture,Selfie 1,7,300
+Picture,Selfie 2,8,400
+Picture,Crazy Night,10,600
+Picture,Selfie 3,6,200
+End1

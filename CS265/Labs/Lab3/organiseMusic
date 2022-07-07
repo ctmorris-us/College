@@ -1,0 +1,35 @@
+#!/bin/bash
+
+ls -l | while read line
+do
+	if [[ $line == *.mp3 ]]
+	then
+		full_song=$( echo $line | cut --complement -d " " -f 1-8 )
+		
+		song_space=$( echo $full_song | cut -d "-" -f 2 )
+		album_space=$( echo $full_song | cut -d "-" -f 1 )
+		
+		song=${song_space# } 
+		album=${album_space% }
+		
+		echo $line
+		echo $full_song
+
+		mv "$full_song" "$song"
+
+		if [[ -d ./"$album" ]]
+		then
+			echo "Album Exists"
+			mv "$song" ./"$album"
+		else
+			mkdir "$album"
+			mv "$song" ./"$album"
+		fi
+	fi
+
+done
+
+
+
+
+

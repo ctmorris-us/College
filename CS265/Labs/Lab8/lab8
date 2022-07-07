@@ -1,0 +1,30 @@
+Q1:
+
+Segmentation fault (core dumped)
+
+A Core file was placed into the directory.
+
+Q2:
+
+Size of Core File: 380928 bytes.
+
+The program bombed at function: __strcmp_avx2 (), specifically when strcmp was called at line 79 of the function: int inTable( const char *s ).
+
+
+Q3:
+
+Modified Lines:
+
+push(&stack, pop(&stack)-num)
+
+I fixed the problem by switching pop(&stack) and num, the problem was that the minus command did not take into account the order reversal caused by using a stack. This was found using the command: 4 3 - =, which should have returned 1, but instead returned -1. Therefore, by using the modified line, the proper ordering of input elements will be used with doing subtraction.
+
+Q4:
+
+Modified Line:
+
+quicksort(v+last+1, n-last-1)
+
+The problem is that the partitioning of the quick sort was not being done correctly when recursively calling quick sort on the right block of the pivot. This solution works as it sets the pointer to the next element right of the pivot, this then allows the quick sort to be done on right block of the pivot. I would assert that n > last because that would mean that the proper usage of last and n was being used when recursively calling quicksort.
+
+

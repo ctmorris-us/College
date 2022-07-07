@@ -1,0 +1,115 @@
+#!/bin/bash
+
+defaultFileName='.KS_Dir'
+while getopts f: param; do
+	newFileName="$OPTARG"
+done
+
+shift "$((OPTIND-1))"
+
+if [[ -z ${2+x} ]] ; then
+#	echo "Directory was not specified, using current working directory"
+	TargetAnimalName="$1"
+	topDIR=$( pwd )
+
+else
+#	echo "Direct was specified"
+	TargetAnimalName="$2"
+	
+	cd "${1}"
+	topDIR=$( pwd )
+fi
+
+
+
+FileName=${newFileName:-$defaultFileName}
+TargetAnimalCount=0
+
+getAnimalCount ()
+{
+
+while read line ; do
+
+	AnimalName=$( echo $line | cut -d " " -f 1) 
+	AnimalCount=$( echo $line | cut -d " " -f 2)
+	
+	if [[ "$AnimalName" == "$1" ]] ; then
+#		echo "Found $AnimalName with a count of $AnimalCount in file: $2"
+		TargetAnimalCount=$(( TargetAnimalCount + AnimalCount ))
+	fi
+
+done < $2 
+TargetAnimalCount=${TargetAnimalCount}
+}
+
+
+TransverseSystem ()
+{
+
+if [[ -z ${currentLevel+x} ]] ; then
+	currentDIR=$topDIR
+	allPaths=( ${topDIR} )
+	currentLevel=0
+else
+	currentDIR="${allPaths[$currentLevel]}/${1}"
+	allPaths+=( ${currentDIR} )
+	currentLevel=$(( currentLevel + 1 ))
+fi
+
+cd "${currentDIR}"
+#echo $currentDIR
+
+while read line; do
+	if [[ "$line" == "." ]] || [[ "$line" == ".." ]] ; then
+		continue
+	fi
+	if [[ -d $line ]] ; then	
+#		echo "$line is a directory shifting to that directory"
+		TransverseSystem "${line}"
+		continue
+
+	elif [[ "$line" == "$FileName" ]] ; then
+#		echo "$line matches file name"
+		getAnimalCount $TargetAnimalName $line
+		TargetAnimalCount=$TargetAnimalCount
+		continue
+	else
+		continue
+
+	fi
+
+done <<< $( ls -a ) 
+
+TargetAnimalCount=$TargetAnimalCount
+
+if [[ $currentLevel == 0 ]] ; then
+#	echo "Done Recursion"
+	true
+else
+	allPaths=( ${allPaths[@]:0:$currentLevel} )
+	currentLevel=$(( currentLevel - 1 ))
+	currentDIR="${allPaths[$currentLevel]}"
+	cd "${currentDIR}"
+#	echo "returning back to $currentDIR"
+fi
+}
+
+#TransverseSystem topDIR
+#getAnimalCount $TargetAnimalName $FileName   
+
+TransverseSystem
+#echo "Final Current Directory $currentDIR"
+#echo "Final all Paths $allPaths"
+echo "${TargetAnimalName} ${TargetAnimalCount}"
+
+
+
+
+
+
+
+
+
+
+
+

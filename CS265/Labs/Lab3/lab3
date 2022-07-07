@@ -1,0 +1,40 @@
+Q1:
+true
+The character 1 comes before in Lexicographical order so it is less than “2” in that case
+
+Q2:
+All we have to decide is what to do with the chocolate that is given us...
+
+Chocolate is written in one file in the mySettings directory
+
+Q3:
+2
+
+The floor value of 13/5 which is 2.6 floored to 2
+
+Q4:
+0
+
+27 % 2 is equal to 1 which then resulted in a true value in the (()). Echo $? Outputs the the previous return value which in this case is 0 (or true)
+
+Q5:
+5 12 13
+5    13 
+
+When running commands in () a new subshell is created, the commands are run in that new subshell, andthe results are not saved in the current shell. So, the assignment of x was not done in the current shell, but it was done in the subshell.
+
+Q6:
+
+Item
+Another
+item
+
+Q7:
+Item
+Another item
+
+Q8:
+
+Item
+Another item
+

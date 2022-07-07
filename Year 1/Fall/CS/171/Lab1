@@ -1,0 +1,87 @@
+#Python Lab 1
+#1/11/19
+
+def receipt():
+    print('RECEIPT')
+    for food_list in cart:
+        print('{} {} @ $ {} = $ {}'.format(food_list[2], food_list[0], food_list[1], food_list[1] * food_list[2]))
+    print('Total cost: $ {}'.format(sum(item[1] * item[2] for item in cart))
+
+itemName = input('Enter food item name:\n')
+itemPrice = float(input('Enter item price:\n'))
+itemQuant = int(input('Enter item quantity:\n'))
+
+cart = []
+cart.append((itemName, itemPrice, itemQuant))
+
+receipt()
+
+itemName = input('Enter second food item name:\n')
+itemPrice = float(input('Enter second item price:\n'))
+itemQuant = int(input('Enter second item quantity:\n'))
+
+cart.append((itemName, itemPrice, itemQuant))
+
+receipt()
+
+cart_total = sum(item[1] * item[2] for item in cart) * .15
+print('15% gratuity: $ {}'.format(sum(cart_total * .15))
+print('Total with tip: $ {}'.format(sum(cart_total * .15 + cart_total))
+
+
+
+# FIXME (2): Read in a second food item name, price, and quantity, then output a second receipt
+
+# FIXME (3): Add a gratuity and total with tip to the second receipt
+
+
+
+
+
+# animal = input('Please type the name of an animal. ')
+# color = input('Please type the name of a color. ')
+# vehicle = input('Please type the name of a vehicle. ')
+# city = input('Please type the name of a city. ')
+# print('The', color, animal, 'drove the', vehicle, 'to', city + '.' )
+
+
+# a = int(input('Enter integer a:\n'))
+# b = int(input('Enter integer b:\n'))
+
+# lemonJuiceCups = float(input('Enter amount of lemon juice (in cups):\n'))
+# waterCups = float(input('Enter amount of water (in cups):\n'))
+# agaveCups = float(input('Enter amount of agave nectar (in cups):\n'))
+# servings = float(input('How many servings does this make?\n'))
+#
+#
+# print('\nLemonade ingredients - yields {} servings'.format(servings))
+# print('{} cup(s) lemon juice\n{} cup(s) water\n{} cup(s) agave nectar'.format(lemonJuiceCups, waterCups, agaveCups))
+#
+# servings_make = float(input('\nHow many servings would you like to make?\n'))
+#
+# lemonJuiceCups *= servings_make/servings
+# waterCups *= servings_make/servings
+# agaveCups *= servings_make/servings
+#
+# print('\nLemonade ingredients - yields {} servings'.format(servings_make))
+# print('{} cup(s) lemon juice\n{} cup(s) water\n{} cup(s) agave nectar\n'.format(lemonJuiceCups, waterCups, agaveCups))
+#
+# lemonJuiceCups /= 16
+# waterCups /= 16
+# agaveCups /= 16
+#
+# print('Lemonade ingredients - yields {} servings'.format(servings_make))
+# print('{} gallon(s) lemon juice\n{} gallon(s) water\n{} gallon(s) agave nectar'.format(lemonJuiceCups, waterCups, agaveCups))
+
+# FIXME (3): Convert the integer to a characer, and output that character
+
+
+# print('a+b=', a+b)
+# print('a-b=', a-b)
+# print('b-a=', b-a)
+# print('a*b=', a*b)
+# print('a/b=', a/b)
+# print('a//b=', a//b)
+# print('a%b=', a%b)
+# print('a**b=', a**b)
+# print(' (a*b) ** (a+b)=', (a*b) ** (a+b))

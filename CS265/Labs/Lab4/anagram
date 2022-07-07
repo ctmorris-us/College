@@ -1,0 +1,18 @@
+#!/bin/bash
+
+fileLocation="/usr/share/dict/words"
+gcc -o sign.out sign.c
+( ./sign.out < $fileLocation | sort | awk -f squash.awk | awk '{print NF, $0}' | sort -n | tail -8 )
+
+
+
+
+
+
+
+
+
+
+
+
+

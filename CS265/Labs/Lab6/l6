@@ -1,0 +1,68 @@
+1.1:
+
+void add3i(int *a, int n) {
+
+   int i;
+   for(i=0; i <= (n-1); i++) {
+      *a = *a + 3;
+      a++;
+   }
+}
+
+1.2
+
+int length(sNode *p) {
+   int l;
+   l = 1;
+
+   while(1) {
+      if( p->next == NULL ) {
+         break;
+      }
+      else {
+         l++;
+         p = p->next;
+      }
+   }
+   return l;
+}
+
+1.3
+
+int sum(sNode *p) {
+   int s;
+
+   while (1) {
+      if (p->next == NULL ) {
+         break;
+      }
+      else {
+         s = s + p->i;
+         p = p->next;
+
+      }
+   }
+   return s;
+}
+
+1.4
+
+void addk(sNode *p, int k) {
+   while(1) {
+      if (p->next == NULL) {
+         p->i = p->i + k;
+         break;
+      }
+      else {
+         p->i = p->i + k;
+         p = p->next;
+      }
+   }
+}
+
+
+1.5
+
+void purge(sNode *p, int targ) {
+}
+
